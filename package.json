@@ -1,0 +1,21 @@
+{
+  "name": "wp-headless",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "faust dev",
+    "build": "faust build",
+    "start": "faust start",
+    "lint": "faust lint",
+    "generate": "faust generatePossibleTypes"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.12.7",
+    "@faustwp/cli": "^3.1.1",
+    "@faustwp/core": "^3.1.0",
+    "graphql": "^16.10.0",
+    "next": "14.2.23",
+    "react": "^18",
+    "react-dom": "^18"
+  }
+}
