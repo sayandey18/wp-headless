@@ -1,15 +1,15 @@
-import { useState } from "react";
-import { useMutation } from "@apollo/client";
-import { LeaveCommentMutation } from "@/fragments/mutations";
+import { useState } from 'react';
+import { useMutation } from '@apollo/client';
+import { LeaveCommentMutation } from '@/fragments/mutations';
 
-export default function Comment({ postId }) {
-    const [formData, setFormData] = useState({
-        author: "",
-        email: "",
-        content: ""
+export default function CommentBox({ postId }) {
+    const [formValues, setFormValues] = useState({
+        author: '',
+        email: '',
+        content: ''
     });
 
-    const [status, setStatus] = useState({
+    const [formStatus, setFormStatus] = useState({
         error: null,
         success: false,
         loading: false
@@ -18,43 +18,43 @@ export default function Comment({ postId }) {
     const [createComment] = useMutation(LeaveCommentMutation);
 
     const handleInputChange = (e) => {
-        setFormData(prev => ({
+        setFormValues((prev) => ({
             ...prev,
             [e.target.name]: e.target.value
         }));
 
         // Clear error when user starts typing
-        if (status.error) {
-            setStatus(prev => ({ ...prev, error: null }))
-        };
+        if (formStatus.error) {
+            setFormStatus((prev) => ({ ...prev, error: null }));
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setStatus({ loading: true, error: null, success: false });
+        setFormStatus({ loading: true, error: null, success: false });
 
         try {
             const { data } = await createComment({
                 variables: {
                     input: {
                         commentOn: postId,
-                        content: formData.content,
-                        author: formData.author,
-                        authorEmail: formData.email
+                        content: formValues.content,
+                        author: formValues.author,
+                        authorEmail: formValues.email
                     }
                 }
             });
 
             if (data.createComment.success) {
-                setStatus({ loading: false, error: null, success: true });
-                setFormData({ author: "", email: "", content: "" });
+                setFormStatus({ loading: false, error: null, success: true });
+                setFormValues({ author: '', email: '', content: '' });
             } else {
-                throw new Error("Comment submission failed");
+                throw new Error('Comment submission failed');
             }
         } catch (error) {
-            setStatus({
+            setFormStatus({
                 loading: false,
-                error: error.message || "An error occurred",
+                error: error.message || 'An error occurred.',
                 success: false
             });
         }
@@ -67,7 +67,7 @@ export default function Comment({ postId }) {
                     type="text"
                     name="author"
                     placeholder="Name"
-                    value={formData.author}
+                    value={formValues.author}
                     onChange={handleInputChange}
                     required
                 />
@@ -77,7 +77,7 @@ export default function Comment({ postId }) {
                     type="email"
                     name="email"
                     placeholder="Email"
-                    value={formData.email}
+                    value={formValues.email}
                     onChange={handleInputChange}
                     required
                 />
@@ -86,24 +86,21 @@ export default function Comment({ postId }) {
                 <textarea
                     name="content"
                     placeholder="Your comment..."
-                    value={formData.content}
+                    value={formValues.content}
                     onChange={handleInputChange}
                     required
                 />
             </div>
-            <button
-                type="submit"
-                disabled={status.loading}
-            >
-                {status.loading ? 'Submitting...' : 'Post Comment'}
+            <button type="submit" disabled={formStatus.loading}>
+                {formStatus.loading ? 'Submitting...' : 'Post Comment'}
             </button>
 
-            {status.error && (
-                <p className="text-red-500 mt-2">Error: {status.error}</p>
+            {formStatus.error && (
+                <p className="mt-2 text-red-500">Error: {formStatus.error}</p>
             )}
 
-            {status.success && (
-                <p className="text-green-500 mt-2">
+            {formStatus.success && (
+                <p className="mt-2 text-green-500">
                     Comment submitted for moderation!
                 </p>
             )}
