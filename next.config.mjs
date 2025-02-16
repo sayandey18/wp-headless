@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-import { withFaust, getWpHostname } from "@faustwp/core";
+import { withFaust, getWpHostname } from '@faustwp/core';
 
 const nextConfig = {
   reactStrictMode: true,
@@ -47,9 +47,21 @@ const nextConfig = {
         hostname: 'secure.gravatar.com',
         port: '',
         pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'images.unsplash.com',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'cdn.prod.website-files.com',
+        port: '',
+        pathname: '/**',
       }
     ],
-  },
+  }
 }
 
 export default withFaust(nextConfig);
