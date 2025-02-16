@@ -1,15 +1,17 @@
-import main from "./front-page";
-import page from "./page";
-import single from "./single";
-import category from "./category";
-import archive from "./archive";
-import author from "./author";
+import home from '@/wp-templates/home';
+import page from '@/wp-templates/page';
+// import contact from '@/wp-templates/contact';
+import single from '@/wp-templates/single';
+import category from '@/wp-templates/category';
+import archive from '@/wp-templates/archive';
+import author from '@/wp-templates/author';
 
 export default {
-    "front-page": main,
-    page,
-    single,
-    category,
-    archive,
-    author
+    page: page,
+    single: single,
+    author: author,
+    archive: archive,
+    category: category,
+    'page-home': home
+    // 'page-contact': contact,
 };

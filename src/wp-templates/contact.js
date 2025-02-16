@@ -1,7 +1,9 @@
 import { gql } from '@apollo/client';
+import { GfContactFormFrag } from '@/graphql/general';
+
 import PageLayout from '@/components/PageLayout';
 
-export default function Page(props) {
+export default function ContactPage(props) {
     const { data, loading } = props;
 
     // Loading state for previews
@@ -19,7 +21,8 @@ export default function Page(props) {
     return <PageLayout page={pageEntry}>{pageContent}</PageLayout>;
 }
 
-Page.query = gql`
+ContactPage.query = gql`
+    ${GfContactFormFrag}
     query PageQuery($databaseId: ID!, $asPreview: Boolean = false) {
         page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
             title
@@ -28,10 +31,17 @@ Page.query = gql`
                 fullHead
             }
         }
+
+        gfForm(id: 2, idType: DATABASE_ID) {
+            databaseId
+            formFields {
+                ...GfContactFormFrag
+            }
+        }
     }
 `;
 
-Page.variables = ({ databaseId }, ctx) => {
+ContactPage.variables = ({ databaseId }, ctx) => {
     return {
         databaseId,
         asPreview: ctx?.asPreview
