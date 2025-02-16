@@ -1,23 +1,45 @@
-import "@root/faust.config";
-import React from "react";
-import { useRouter } from "next/router";
-import { FaustProvider } from "@faustwp/core";
-import { DM_Mono } from "next/font/google";
-import "@/styles/globals.css";
+import '@root/faust.config';
+import { useRouter } from 'next/router';
+import { FaustProvider } from '@faustwp/core';
+import { DM_Mono, Outfit, Space_Grotesk } from 'next/font/google';
+import { SoundProvider } from '@/context/sound';
+import clsx from 'clsx';
+
+import Header from '@/components/Header';
+import Footer from '@/components/Footer';
+
+import '@/styles/globals.css';
 
 const dmMono = DM_Mono({
-  weight: ["300", "400", "500"],
-  subsets: ['latin'] 
+    weight: ['300', '400', '500'],
+    subsets: ['latin']
+});
+
+const spGro = Space_Grotesk({
+    weight: ['300', '400', '500', '600'],
+    subsets: ['latin']
 });
 
 export default function App({ Component, pageProps }) {
-  const router = useRouter();
+    const router = useRouter();
 
-  return (
-    <FaustProvider pageProps={pageProps}>
-      <div className={dmMono.className}>
-        <Component {...pageProps} key={router.asPath} />
-      </div>
-    </FaustProvider>
-  );
+    return (
+        <FaustProvider pageProps={pageProps}>
+            <SoundProvider>
+                <div className="fixed inset-0 flex justify-center sm:px-8">
+                    <div className="flex w-full max-w-7xl lg:px-8">
+                        <div className="w-full bg-white ring-1 ring-zinc-100 dark:bg-zinc-900 dark:ring-zinc-300/20" />
+                    </div>
+                </div>
+
+                <div className={clsx('relative', spGro.className)}>
+                    <Header />
+                    <main>
+                        <Component {...pageProps} key={router.asPath} />
+                    </main>
+                    <Footer />
+                </div>
+            </SoundProvider>
+        </FaustProvider>
+    );
 }
