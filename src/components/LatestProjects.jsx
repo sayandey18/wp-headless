@@ -55,7 +55,7 @@ export default function LatestProjects() {
         <div className="my-12 w-full">
             <div className="mb-10 flex flex-nowrap items-end justify-between gap-x-8">
                 <div className="grid w-10/12 grid-cols-1">
-                    <h2 className="w-max cursor-pointer text-3xl font-semibold text-teal-500 transition duration-500 ease-in-out hover:underline hover:underline-offset-2">
+                    <h2 className="w-max cursor-pointer text-3xl font-semibold text-zinc-800 dark:text-zinc-100 transition duration-500 ease-in-out hover:underline hover:underline-offset-2">
                         Latest Projects
                     </h2>
                     <p className="mt-2 w-max text-base text-zinc-600 dark:text-zinc-400">
@@ -77,83 +77,89 @@ export default function LatestProjects() {
                 </div>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-                <div className="rounded-2xl border border-zinc-100 bg-zinc-50/20 shadow-2xs dark:border-zinc-700/40 dark:bg-zinc-800/50">
-                    <Link
-                        href=""
-                        className="group relative block p-6"
-                        onMouseEnter={() => plungerPlaySfx()}
-                        onMouseLeave={() => plungerStopSfx()}
-                    >
-                        <div className="flex items-start justify-between">
-                            <Image
-                                src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/6536d8d319b004cb8c71c9a4_devdocs-x-icon-personalfolio-x-webflow-template.png"
-                                alt="icon"
-                                width={40}
-                                height={40}
-                            />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 transition duration-500 group-hover:text-teal-500 dark:text-zinc-100 dark:group-hover:text-teal-500">
-                            DevDocs X
-                        </h3>
-                        <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                            Lorem ipsum dolor sit amet consectetur tincidunt
-                            lorem quam ultrices sapien.
-                        </p>
-                        <div></div>
-                    </Link>
+                <div className="group rounded-xl bg-gradient-to-r from-pink-500 via-red-500 to-yellow-500 p-[5px] shadow-2xs">
+                    <div className="rounded-xl h-full bg-white dark:bg-zinc-800">
+                        <Link
+                            href=""
+                            className="relative block p-6"
+                            onMouseEnter={() => plungerPlaySfx()}
+                            onMouseLeave={() => plungerStopSfx()}
+                        >
+                            <div className="flex items-start justify-between">
+                                <Image
+                                    src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/6536d8d319b004cb8c71c9a4_devdocs-x-icon-personalfolio-x-webflow-template.png"
+                                    alt="icon"
+                                    width={40}
+                                    height={40}
+                                />
+                                <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            </div>
+                            <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                                DevDocs X
+                            </h3>
+                            <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+                                Lorem ipsum dolor sit amet consectetur tincidunt
+                                lorem quam ultrices sapien.
+                            </p>
+                            <div></div>
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-100 bg-zinc-50/20 shadow-2xs dark:border-zinc-700/40 dark:bg-zinc-800/50">
-                    <Link
-                        href=""
-                        className="group relative block p-6"
-                        onMouseEnter={() => plungerPlaySfx()}
-                        onMouseLeave={() => plungerStopSfx()}
-                    >
-                        <div className="flex items-start justify-between">
-                            <Image
-                                src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/653a8b0cb3e5f9b3e71c88b7_emailstudio-x-icon-personalfolio-x-webflow-template.png"
-                                alt="icon"
-                                width={40}
-                                height={40}
-                            />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 transition duration-500 group-hover:text-teal-500 dark:text-zinc-100 dark:group-hover:text-teal-500">
-                            Startuply X
-                        </h3>
-                        <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                            Lorem ipsum dolor sit amet consectetur tincidunt
-                            lorem quam ultrices sapien.
-                        </p>
-                    </Link>
+                <div className="group rounded-xl bg-gradient-to-r from-fuchsia-500 to-cyan-500 p-[5px] shadow-2xs">
+                    <div className="rounded-xl h-full bg-white dark:bg-zinc-800">
+                        <Link
+                            href=""
+                            className="relative block p-6"
+                            onMouseEnter={() => plungerPlaySfx()}
+                            onMouseLeave={() => plungerStopSfx()}
+                        >
+                            <div className="flex items-start justify-between">
+                                <Image
+                                    src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/653a8b0cb3e5f9b3e71c88b7_emailstudio-x-icon-personalfolio-x-webflow-template.png"
+                                    alt="icon"
+                                    width={40}
+                                    height={40}
+                                />
+                                <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            </div>
+                            <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                                Startuply X
+                            </h3>
+                            <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+                                Lorem ipsum dolor sit amet consectetur tincidunt
+                                lorem quam ultrices sapien.
+                            </p>
+                        </Link>
+                    </div>
                 </div>
 
-                <div className="rounded-2xl border border-zinc-100 bg-zinc-50/20 shadow-2xs dark:border-zinc-700/40 dark:bg-zinc-800/50">
-                    <Link
-                        href=""
-                        className="group relative block p-6"
-                        onMouseEnter={() => plungerPlaySfx()}
-                        onMouseLeave={() => plungerStopSfx()}
-                    >
-                        <div className="flex items-start justify-between">
-                            <Image
-                                src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/6536d868a7e7884f9c66bd42_startuply-x-icon-personalfolio-x-webflow-template.png"
-                                alt="icon"
-                                width={40}
-                                height={40}
-                            />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
-                        </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 transition duration-500 group-hover:text-teal-500 dark:text-zinc-100 dark:group-hover:text-teal-500">
-                            EmailStudio X
-                        </h3>
-                        <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
-                            Lorem ipsum dolor sit amet consectetur tincidunt
-                            lorem quam ultrices sapien.
-                        </p>
-                    </Link>
+                <div className="group rounded-xl bg-gradient-to-r from-teal-400 to-yellow-200 p-[5px] shadow-2xs">
+                    <div className="rounded-xl h-full bg-white dark:bg-zinc-800">
+                        <Link
+                            href=""
+                            className="relative block p-6"
+                            onMouseEnter={() => plungerPlaySfx()}
+                            onMouseLeave={() => plungerStopSfx()}
+                        >
+                            <div className="flex items-start justify-between">
+                                <Image
+                                    src="https://cdn.prod.website-files.com/65368bb1ddd075f23c278b7b/6536d868a7e7884f9c66bd42_startuply-x-icon-personalfolio-x-webflow-template.png"
+                                    alt="icon"
+                                    width={40}
+                                    height={40}
+                                />
+                                <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            </div>
+                            <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                                EmailStudio X
+                            </h3>
+                            <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
+                                Lorem ipsum dolor sit amet consectetur tincidunt
+                                lorem quam ultrices sapien. It amet consectetur tincidunt.
+                            </p>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

@@ -19,7 +19,6 @@ const eslintConfig = [
             'eslint:recommended',
             'next/core-web-vitals',
             'prettier',
-            'plugin:@next/next/recommended'
         ],
         settings: {
             next: {

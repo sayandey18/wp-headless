@@ -51,8 +51,8 @@ export default function HomePage(props) {
                         Enthusiast.
                     </h1>
                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I'm Sayan, a full-stack web developer and entrepreneur
-                        based in Kolkata, India. I'm the founder and CEO of
+                        I&apos;m Sayan, a full-stack web developer and entrepreneur
+                        based in Kolkata, India. I&apos;m the founder and CEO of
                         Zappz Group, where we develop technologies that empower
                         regular people to explore space on their own terms.
                     </p>

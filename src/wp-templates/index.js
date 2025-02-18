@@ -6,7 +6,7 @@ import category from '@/wp-templates/category';
 import archive from '@/wp-templates/archive';
 import author from '@/wp-templates/author';
 
-export default {
+const wpTemplates = {
     page: page,
     single: single,
     author: author,
@@ -15,3 +15,5 @@ export default {
     'page-home': home
     // 'page-contact': contact,
 };
+
+export default wpTemplates;

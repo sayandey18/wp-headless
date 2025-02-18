@@ -1,7 +1,7 @@
 import '@root/faust.config';
 import { useRouter } from 'next/router';
 import { FaustProvider } from '@faustwp/core';
-import { DM_Mono, Outfit, Space_Grotesk } from 'next/font/google';
+import { DM_Mono } from 'next/font/google';
 import { SoundProvider } from '@/context/sound';
 import clsx from 'clsx';
 
@@ -10,13 +10,8 @@ import Footer from '@/components/Footer';
 
 import '@/styles/globals.css';
 
-const dmMono = DM_Mono({
+const dmono = DM_Mono({
     weight: ['300', '400', '500'],
-    subsets: ['latin']
-});
-
-const spGro = Space_Grotesk({
-    weight: ['300', '400', '500', '600'],
     subsets: ['latin']
 });
 
@@ -32,7 +27,7 @@ export default function App({ Component, pageProps }) {
                     </div>
                 </div>
 
-                <div className={clsx('relative', spGro.className)}>
+                <div className={clsx('relative', dmono.className)}>
                     <Header />
                     <main>
                         <Component {...pageProps} key={router.asPath} />
