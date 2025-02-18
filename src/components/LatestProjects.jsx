@@ -33,7 +33,7 @@ function ChevronRight(props) {
 
 export default function LatestProjects() {
     const { soundEnabled } = useSoundContext();
-    
+
     const [plungerPlaySfx, { stop: plungerStopSfx }] = useSound(
         '/assets/sounds/plunger-immediate.mp3',
         {
@@ -44,7 +44,8 @@ export default function LatestProjects() {
     );
 
     const [risingPlaySfx, { stop: risingStopSfx }] = useSound(
-        '/assets/sounds/rising-pops.mp3', { 
+        '/assets/sounds/rising-pops.mp3',
+        {
             volume: 0.5,
             soundEnabled
         }
@@ -54,7 +55,7 @@ export default function LatestProjects() {
         <div className="my-12 w-full">
             <div className="mb-10 flex flex-nowrap items-end justify-between gap-x-8">
                 <div className="grid w-10/12 grid-cols-1">
-                    <h2 className="text-3xl w-max cursor-pointer font-semibold text-teal-500 transition duration-500 ease-in-out hover:underline hover:underline-offset-2">
+                    <h2 className="w-max cursor-pointer text-3xl font-semibold text-teal-500 transition duration-500 ease-in-out hover:underline hover:underline-offset-2">
                         Latest Projects
                     </h2>
                     <p className="mt-2 w-max text-base text-zinc-600 dark:text-zinc-400">

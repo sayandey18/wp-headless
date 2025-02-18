@@ -12,15 +12,15 @@ export class RelayStylePagination {
                     RootQuery: {
                         ...options.typePolicies.RootQuery,
                         fields: {
-                            posts: relayStylePagination(),
-                        },
+                            posts: relayStylePagination()
+                        }
                     },
                     ContentType: {
                         fields: {
-                            contentNodes: relayStylePagination(),
-                        },
-                    },
-                },
+                            contentNodes: relayStylePagination()
+                        }
+                    }
+                }
             };
         });
     }

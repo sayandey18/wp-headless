@@ -9,7 +9,7 @@ const faustConfig = {
     templates,
     plugins: [new RelayStylePagination()],
     possibleTypes,
-    usePersistedQueries: true,
+    usePersistedQueries: true
 };
 
 export default setConfig(faustConfig);

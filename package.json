@@ -1,35 +1,43 @@
 {
-  "name": "wp-headless",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "faust dev",
-    "build": "faust build",
-    "start": "faust start",
-    "lint": "faust lint",
-    "generate": "faust generatePossibleTypes",
-    "format": "prettier --write src/**/*.{js,jsx}"
-  },
-  "dependencies": {
-    "@apollo/client": "^3.12.11",
-    "@faustwp/cli": "^3.1.1",
-    "@faustwp/core": "^3.2.0",
-    "@headlessui/react": "^2.2.0",
-    "@remixicon/react": "^4.6.0",
-    "@tailwindcss/postcss": "^4.0.0",
-    "@tailwindcss/typography": "^0.5.16",
-    "clsx": "^2.1.1",
-    "graphql": "^16.10.0",
-    "html-react-parser": "^5.2.2",
-    "next": "14.2.23",
-    "react": "^18",
-    "react-dom": "^18",
-    "reading-duration": "^1.1.2",
-    "tailwindcss": "^4.0.0",
-    "use-sound": "^4.0.3"
-  },
-  "devDependencies": {
-    "prettier": "^3.4.2",
-    "prettier-plugin-tailwindcss": "^0.6.11"
-  }
+    "name": "wp-headless",
+    "version": "0.1.0",
+    "private": true,
+    "scripts": {
+        "dev": "faust dev",
+        "build": "faust build",
+        "start": "faust start",
+        "lint": "eslint .",
+        "generate": "faust generatePossibleTypes",
+        "format": "prettier --write '**/*.{css,js,jsx,mjs,cjs,json}'",
+        "format:check": "prettier --check './**/*.{css,js,jsx,mjs,cjs,json}'"
+    },
+    "dependencies": {
+        "@apollo/client": "^3.12.11",
+        "@faustwp/cli": "^3.1.1",
+        "@faustwp/core": "^3.2.0",
+        "@headlessui/react": "^2.2.0",
+        "@remixicon/react": "^4.6.0",
+        "@tailwindcss/postcss": "^4.0.0",
+        "@tailwindcss/typography": "^0.5.16",
+        "clsx": "^2.1.1",
+        "graphql": "^16.10.0",
+        "html-react-parser": "^5.2.2",
+        "next": "14.2.24",
+        "react": "^18",
+        "react-dom": "^18",
+        "reading-duration": "^1.1.2",
+        "tailwindcss": "^4.0.0",
+        "use-sound": "^4.0.3"
+    },
+    "devDependencies": {
+        "@eslint/eslintrc": "^3.2.0",
+        "@eslint/js": "8.57.0",
+        "@next/eslint-plugin-next": "14.2.24",
+        "eslint": "8.57.0",
+        "eslint-config-next": "14.2.24",
+        "eslint-config-prettier": "^10.0.1",
+        "eslint-plugin-unused-imports": "^4.1.4",
+        "prettier": "^3.4.2",
+        "prettier-plugin-tailwindcss": "^0.6.11"
+    }
 }
