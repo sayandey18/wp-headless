@@ -1,10 +1,9 @@
 import { Fragment, useEffect, useRef } from 'react';
-import { gql, useQuery } from '@apollo/client';
+import { useRouter } from 'next/router';
 import Image from 'next/image';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
+import clsx from 'clsx';
 import useSound from 'use-sound';
-import { useSoundContext } from '@/context/sound';
 import {
     Popover,
     PopoverButton,
@@ -13,11 +12,9 @@ import {
     Transition,
     TransitionChild
 } from '@headlessui/react';
-import clsx from 'clsx';
-import { SpeakerOnIcon, SpeakerOffIcon } from '@/components/SimpleIcons';
 
 import Container from '@/components/Container';
-import { PrimaryMenuFragment } from '@/graphql/general';
+import { BorderBeam } from '@/components/MagicUi';
 
 const avatarImage =
     'https://secure.gravatar.com/avatar/e2b8f94c5fe65e65d6fc60caf4e0a21d?s=96';
@@ -96,7 +93,7 @@ function MobileNavItem({ href, children }) {
 function MobileNavigation({ navItems, ...props }) {
     return (
         <Popover {...props}>
-            <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 ring-1 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
+            <PopoverButton className="group flex items-center rounded-full bg-white/90 px-4 py-2 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10 dark:hover:ring-white/20">
                 Menu
                 <ChevronDownIcon className="ml-3 h-auto w-2 stroke-zinc-500 group-hover:stroke-zinc-700 dark:group-hover:stroke-zinc-400" />
             </PopoverButton>
@@ -183,7 +180,7 @@ function NavItem({ href, target, children }) {
 function DesktopNavigation({ navItems, ...props }) {
     return (
         <nav {...props}>
-            <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 ring-1 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
+            <ul className="flex rounded-full bg-white/90 px-3 text-sm font-medium text-zinc-800 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:text-zinc-200 dark:ring-white/10">
                 {navItems.map((item) => (
                     <NavItem key={item.id} href={item.uri} target={item.target}>
                         {item.label}
@@ -195,16 +192,12 @@ function DesktopNavigation({ navItems, ...props }) {
 }
 
 function ModeToggle() {
-    const { soundEnabled } = useSoundContext();
-
     const [switchOnSfx] = useSound('/assets/sounds/switch-on.mp3', {
-        volume: 0.5,
-        soundEnabled
+        volume: 0.5
     });
 
     const [switchOffSfx] = useSound('assets/sounds/switch-off.mp3', {
-        volume: 0.5,
-        soundEnabled
+        volume: 0.5
     });
 
     function disableTransitionsTemporarily() {
@@ -236,32 +229,21 @@ function ModeToggle() {
         <button
             type="button"
             aria-label="Toggle dark mode"
-            className="group cursor-pointer rounded-full bg-white/90 px-3 py-2 ring-1 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
+            className="group relative cursor-pointer overflow-hidden rounded-full bg-white/90 px-3 py-2 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
             onClick={() => toggleMode()}
         >
             <SunIcon className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600" />
             <MoonIcon className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400" />
-        </button>
-    );
-}
-
-function SoundToggle() {
-    const { soundEnabled, toggleSound } = useSoundContext();
-
-    return (
-        <button
-            type="button"
-            aria-label={
-                soundEnabled ? 'Toggle mute sound' : 'Toggle unmute sound'
-            }
-            className="group cursor-pointer rounded-full bg-white/90 px-3 py-2 ring-1 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm transition dark:bg-zinc-800/90 dark:ring-white/10 dark:hover:ring-white/20"
-            onClick={() => toggleSound()}
-        >
-            {soundEnabled ? (
-                <SpeakerOnIcon className="h-6 w-6 fill-zinc-50 stroke-zinc-500 transition group-hover:fill-zinc-100 group-hover:stroke-zinc-700 dark:fill-zinc-800 dark:stroke-teal-500" />
-            ) : (
-                <SpeakerOffIcon className="h-6 w-6 fill-zinc-50 stroke-zinc-500 transition group-hover:fill-zinc-100 group-hover:stroke-zinc-700 dark:fill-zinc-800 dark:stroke-teal-500" />
-            )}
+            <BorderBeam
+                size={40}
+                initialOffset={20}
+                className="from-transparent via-yellow-500 to-transparent dark:via-teal-500"
+                transition={{
+                    type: 'spring',
+                    stiffness: 60,
+                    damping: 20
+                }}
+            />
         </button>
     );
 }
@@ -277,7 +259,7 @@ function AvatarContainer({ className, ...props }) {
         <div
             className={clsx(
                 className,
-                'h-10 w-10 rounded-full bg-white/90 p-0.5 ring-1 shadow-lg shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
+                'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
             )}
             {...props}
         />
@@ -306,7 +288,7 @@ function Avatar({ large = false, className, ...props }) {
     );
 }
 
-export default function Header() {
+export default function Header({ menu }) {
     const isHomePage = useRouter().pathname === '/';
 
     const headerRef = useRef(null);
@@ -413,9 +395,6 @@ export default function Header() {
         };
     }, [isHomePage]);
 
-    const { data } = useQuery(Header.query);
-    const navItems = data?.navItems?.nodes || [];
-
     return (
         <>
             <header
@@ -483,18 +462,17 @@ export default function Header() {
                             </div>
                             <div className="flex flex-1 justify-end md:justify-center">
                                 <MobileNavigation
-                                    navItems={navItems}
+                                    navItems={menu}
                                     className="pointer-events-auto md:hidden"
                                 />
                                 <DesktopNavigation
-                                    navItems={navItems}
+                                    navItems={menu}
                                     className="pointer-events-auto hidden md:block"
                                 />
                             </div>
                             <div className="flex justify-end md:flex-1">
                                 <div className="pointer-events-auto flex flex-nowrap items-center justify-between gap-x-3">
                                     <ModeToggle />
-                                    <SoundToggle />
                                 </div>
                             </div>
                         </div>
@@ -505,14 +483,3 @@ export default function Header() {
         </>
     );
 }
-
-Header.query = gql`
-    ${PrimaryMenuFragment}
-    query PrimaryMenu {
-        navItems: menuItems(where: { location: PRIMARY, parentId: 0 }) {
-            nodes {
-                ...PrimaryMenuFragment
-            }
-        }
-    }
-`;

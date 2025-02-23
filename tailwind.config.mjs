@@ -312,7 +312,32 @@ const tailwindConfig = {
                     }
                 }
             }
-        })
+        }),
+        extend: {
+            blur: {
+                '4xl': '4.5rem',
+                '5xl': '6rem'
+            },
+            backgroundImage: {
+                'grid-pattern':
+                    'linear-gradient(to right, rgb(128 128 128 / 4%) 1px, transparent 1px), linear-gradient(to bottom, rgb(128 128 128 / 4%) 1px, transparent 1px)'
+            },
+            animation: {
+                marquee: 'marquee var(--duration) linear infinite',
+                'marquee-vertical':
+                    'marquee-vertical var(--duration) linear infinite'
+            },
+            keyframes: {
+                marquee: {
+                    from: { transform: 'translateX(0)' },
+                    to: { transform: 'translateX(calc(-100% - var(--gap)))' }
+                },
+                'marquee-vertical': {
+                    from: { transform: 'translateY(0)' },
+                    to: { transform: 'translateY(calc(-100% - var(--gap)))' }
+                }
+            }
+        }
     },
     plugins: [typography]
 };

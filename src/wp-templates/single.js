@@ -1,13 +1,16 @@
 import { gql } from '@apollo/client';
-import { PostTagFrag } from '@/graphql/general';
 
 import Prose from '@/components/Prose';
+import Header from '@/components/Header';
 import EntryHeader from '@/components/EntryHeader';
 import ArticleLayout from '@/components/ArticleLayout';
+import { BlurFade } from '@/components/MagicUi';
+
+import { PrimaryMenuFrag, PostTagFrag } from '@/graphql/general';
 
 export default function Single(props) {
     const {
-        data: { post },
+        data: { post, menus },
         loading
     } = props;
 
@@ -16,6 +19,7 @@ export default function Single(props) {
         return <>Loading...</>;
     }
 
+    const menuItems = menus?.nodes || [];
     const postContent = post?.content;
 
     const postEntry = {
@@ -33,16 +37,26 @@ export default function Single(props) {
     };
 
     return (
-        <ArticleLayout post={postEntry}>
-            <EntryHeader header={postHeader} />
-            <Prose className="mt-8">{postContent}</Prose>
-        </ArticleLayout>
+        <BlurFade delay={0.25} duration={0.5}>
+            <Header menu={menuItems} />
+            <ArticleLayout post={postEntry}>
+                <EntryHeader header={postHeader} />
+                <Prose className="mt-8">{postContent}</Prose>
+            </ArticleLayout>
+        </BlurFade>
     );
 }
 
 Single.query = gql`
     ${PostTagFrag}
+    ${PrimaryMenuFrag}
     query PostPageQuery($databaseId: ID!, $asPreview: Boolean = false) {
+        menus: menuItems(where: { location: PRIMARY, parentId: 0 }) {
+            nodes {
+                ...PrimaryMenuFrag
+            }
+        }
+
         post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
             date
             title

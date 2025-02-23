@@ -150,7 +150,7 @@ export default function Newsletter({ form }) {
     return (
         <form
             onSubmit={handleSubmit}
-            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+            className="relative rounded-2xl border border-zinc-200 bg-white p-6 dark:border-zinc-700/40 dark:bg-zinc-800"
         >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 <MailIcon className="h-6 w-6 flex-none" />

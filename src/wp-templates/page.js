@@ -1,5 +1,9 @@
 import { gql } from '@apollo/client';
+import Header from '@/components/Header';
 import PageLayout from '@/components/PageLayout';
+import { BlurFade } from '@/components/MagicUi';
+
+import { PrimaryMenuFrag } from '@/graphql/general';
 
 export default function Page(props) {
     const { data, loading } = props;
@@ -9,6 +13,7 @@ export default function Page(props) {
         return <>Loading...</>;
     }
 
+    const menuItems = data?.menus?.nodes || [];
     const pageContent = data?.page?.content;
 
     const pageEntry = {
@@ -16,11 +21,23 @@ export default function Page(props) {
         yoast: data?.page?.seo?.fullHead
     };
 
-    return <PageLayout page={pageEntry}>{pageContent}</PageLayout>;
+    return (
+        <BlurFade delay={0.25} duration={0.5}>
+            <Header menu={menuItems} />
+            <PageLayout page={pageEntry}>{pageContent}</PageLayout>
+        </BlurFade>
+    );
 }
 
 Page.query = gql`
+    ${PrimaryMenuFrag}
     query PageQuery($databaseId: ID!, $asPreview: Boolean = false) {
+        menus: menuItems(where: { location: PRIMARY, parentId: 0 }) {
+            nodes {
+                ...PrimaryMenuFrag
+            }
+        }
+
         page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
             title
             content

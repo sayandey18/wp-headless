@@ -1,7 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 import useSound from 'use-sound';
-import { useSoundContext } from '@/context/sound';
 
 function ChevronRight(props) {
     return (
@@ -55,14 +54,9 @@ Card.Description = function CardDescription({ children }) {
 };
 
 Card.Cta = function CardCta({ children, slug }) {
-    const { soundEnabled } = useSoundContext();
-
     const [risingPlaySfx, { stop: risingStopSfx }] = useSound(
         '/assets/sounds/rising-pops.mp3',
-        {
-            volume: 0.5,
-            soundEnabled
-        }
+        { volume: 0.5 }
     );
 
     return (
