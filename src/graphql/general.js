@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
-export const PrimaryMenuFragment = gql(`
-    fragment PrimaryMenuFragment on MenuItem {
+export const PrimaryMenuFrag = gql(`
+    fragment PrimaryMenuFrag on MenuItem {
         id
         uri
         path
