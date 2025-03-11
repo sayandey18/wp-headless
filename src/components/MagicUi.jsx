@@ -24,7 +24,7 @@ export function BorderBeam({
             <motion.div
                 className={cn(
                     'absolute aspect-square',
-                    'bg-gradient-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent',
+                    'bg-linear-to-l from-[var(--color-from)] via-[var(--color-to)] to-transparent',
                     className
                 )}
                 style={{
@@ -439,13 +439,11 @@ export function BlurFade({
                 direction === 'right' || direction === 'down'
                     ? -offset
                     : offset,
-            opacity: 0,
-            filter: `blur(${blur})`
+            opacity: 0
         },
         visible: {
             [direction === 'left' || direction === 'right' ? 'x' : 'y']: 0,
-            opacity: 1,
-            filter: `blur(0px)`
+            opacity: 1
         }
     };
     const combinedVariants = variant || defaultVariants;

@@ -1,36 +1,9 @@
-import Image from 'next/image';
 import Link from 'next/link';
+import Image from 'next/image';
 import useSound from 'use-sound';
 
 import { BorderBeam, TextAnimate } from '@/components/MagicUi';
-
-function ArrowUpLeftIcon(props) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-            <path
-                stroke="currentColor"
-                strokeWidth="2.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
-            />
-        </svg>
-    );
-}
-
-function ChevronRight(props) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-            <path
-                stroke="currentColor"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-        </svg>
-    );
-}
+import { ArrowUpLeft, ChevronRight } from '@/components/SimpleIcons';
 
 export default function LatestProjects() {
     const [plungerPlaySfx, { stop: plungerStopSfx }] = useSound(
@@ -50,14 +23,9 @@ export default function LatestProjects() {
         <div className="max-w-xl lg:max-w-none">
             <div className="mb-10 flex flex-nowrap items-end justify-between gap-x-8">
                 <div className="grid w-10/12 grid-cols-1">
-                    <TextAnimate
-                        as="h2"
-                        by="character"
-                        animation="slideLeft"
-                        className="w-max cursor-pointer text-3xl font-semibold text-zinc-800 transition duration-500 ease-in-out hover:underline hover:underline-offset-2 dark:text-zinc-100"
-                    >
+                    <h2 className="w-max cursor-pointer text-3xl font-semibold text-zinc-800 transition duration-500 ease-in-out dark:text-zinc-100">
                         Latest Projects
-                    </TextAnimate>
+                    </h2>
                     <p className="mt-2 w-max text-base text-zinc-600 dark:text-zinc-400">
                         Discover what we've been working on recently.
                     </p>
@@ -69,11 +37,11 @@ export default function LatestProjects() {
                 >
                     <Link
                         href="/projects"
-                        className="text-xs font-medium text-teal-500 transition duration-500 group-hover:text-teal-400"
+                        className="text-sm font-medium text-fuchsia-400 transition duration-500 group-hover:text-fuchsia-500"
                     >
                         Browse all
                     </Link>
-                    <ChevronRight className="h-3 w-3 cursor-pointer text-teal-500 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-teal-400" />
+                    <ChevronRight className="h-3 w-3 cursor-pointer text-fuchsia-400 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-fuchsia-500" />
                 </div>
             </div>
             <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
@@ -91,9 +59,9 @@ export default function LatestProjects() {
                                 width={40}
                                 height={40}
                             />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            <ArrowUpLeft className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-fuchsia-400">
                             DevDocs X
                         </h3>
                         <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
@@ -129,9 +97,9 @@ export default function LatestProjects() {
                                 width={40}
                                 height={40}
                             />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            <ArrowUpLeft className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-fuchsia-400">
                             Startuply X
                         </h3>
                         <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">
@@ -166,9 +134,9 @@ export default function LatestProjects() {
                                 width={40}
                                 height={40}
                             />
-                            <ArrowUpLeftIcon className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
+                            <ArrowUpLeft className="h-4 w-4 scale-100 text-zinc-400/80 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:-translate-y-1 group-hover:text-teal-500 dark:text-teal-400 dark:hover:text-teal-500" />
                         </div>
-                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-teal-500">
+                        <h3 className="mt-4 text-lg font-semibold text-zinc-900 dark:text-zinc-100 dark:group-hover:text-fuchsia-400">
                             EmailStudio X
                         </h3>
                         <p className="mt-2 text-base text-zinc-600 dark:text-zinc-400">

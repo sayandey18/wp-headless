@@ -2,19 +2,7 @@ import Link from 'next/link';
 import clsx from 'clsx';
 import useSound from 'use-sound';
 
-function ChevronRight(props) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-            <path
-                stroke="currentColor"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-        </svg>
-    );
-}
+import { ChevronRight } from '@/components/SimpleIcons';
 
 export default function Card({ as: Component = 'div', className, children }) {
     return (
@@ -65,10 +53,13 @@ Card.Cta = function CardCta({ children, slug }) {
             onMouseLeave={() => risingStopSfx()}
             className="group mt-4 flex items-center justify-end gap-1"
         >
-            <Link href={slug} className="text-base font-medium text-teal-500">
+            <Link
+                href={slug}
+                className="text-base font-medium text-fuchsia-400"
+            >
                 {children}
             </Link>
-            <ChevronRight className="h-3 w-3 cursor-pointer text-teal-500 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-teal-400" />
+            <ChevronRight className="h-3 w-3 cursor-pointer text-fuchsia-400 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-fuchsia-500" />
         </div>
     );
 };
