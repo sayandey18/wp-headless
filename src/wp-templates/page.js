@@ -1,40 +1,52 @@
 import { gql } from '@apollo/client';
-import Header from '@/components/Header';
+import Prose from '@/components/Prose';
+import Layout from '@/components/Layout';
 import PageLayout from '@/components/PageLayout';
-import { BlurFade } from '@/components/MagicUi';
 
-import { PrimaryMenuFrag } from '@/graphql/general';
+import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
 
 export default function Page(props) {
-    const { data, loading } = props;
-
-    // Loading state for previews
-    if (loading) {
+    if (props.loading) {
         return <>Loading...</>;
     }
 
-    const menuItems = data?.menus?.nodes || [];
-    const pageContent = data?.page?.content;
+    const { pmenu, fmenu, page, general } = props.data;
+    const pageContent = page?.content;
 
-    const pageEntry = {
-        title: data?.page?.title,
-        yoast: data?.page?.seo?.fullHead
+    const siteConfig = {
+        metaData: page?.seo?.fullHead,
+        primaryMenus: pmenu?.nodes || [],
+        footerMenus: fmenu?.nodes || [],
+        socialLinks: general?.social
+    };
+
+    const entryHeader = {
+        pageTitle: page?.title
     };
 
     return (
-        <BlurFade delay={0.25} duration={0.5}>
-            <Header menu={menuItems} />
-            <PageLayout page={pageEntry}>{pageContent}</PageLayout>
-        </BlurFade>
+        <Layout config={siteConfig}>
+            <PageLayout entry={entryHeader}>
+                <Prose className="mt-8">{pageContent}</Prose>
+            </PageLayout>
+        </Layout>
     );
 }
 
 Page.query = gql`
-    ${PrimaryMenuFrag}
+    ${PriMenuFrag}
+    ${FooMenuFrag}
+    ${SocialLinksFrag}
     query PageQuery($databaseId: ID!, $asPreview: Boolean = false) {
-        menus: menuItems(where: { location: PRIMARY, parentId: 0 }) {
+        general: generalSettings {
+            social {
+                ...SocialLinksFrag
+            }
+        }
+
+        pmenu: menuItems(where: { location: PRIMARY, parentId: 0 }) {
             nodes {
-                ...PrimaryMenuFrag
+                ...PriMenuFrag
             }
         }
 
@@ -43,6 +55,12 @@ Page.query = gql`
             content
             seo {
                 fullHead
+            }
+        }
+
+        fmenu: menuItems(where: { location: FOOTER, parentId: 0 }) {
+            nodes {
+                ...FooMenuFrag
             }
         }
     }

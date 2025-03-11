@@ -1,29 +1,42 @@
 import { gql } from '@apollo/client';
-import { GfContactFormFrag } from '@/graphql/general';
-
+import Header from '@/components/Header';
 import PageLayout from '@/components/PageLayout';
+import { BlurFade } from '@/components/MagicUi';
+
+import { PriMenuFrag, GfContactFormFrag } from '@/graphql/general';
 
 export default function ContactPage(props) {
-    const { data, loading } = props;
-
-    // Loading state for previews
-    if (loading) {
+    if (props.loading) {
         return <>Loading...</>;
     }
 
-    const pageContent = data?.page?.content;
+    const { menu, page } = props.data;
+    const menuItems = menu?.nodes;
+    const pageContent = page?.content;
 
     const pageEntry = {
-        title: data?.page?.title,
-        yoast: data?.page?.seo?.fullHead
+        pageTitle: page?.title,
+        metaData: page?.seo?.fullHead
     };
 
-    return <PageLayout page={pageEntry}>{pageContent}</PageLayout>;
+    return (
+        <BlurFade delay={0.25} duration={0.5}>
+            <Header menu={menuItems} />
+            <PageLayout entry={pageEntry}>{pageContent}</PageLayout>
+        </BlurFade>
+    );
 }
 
 ContactPage.query = gql`
+    ${PriMenuFrag}
     ${GfContactFormFrag}
     query PageQuery($databaseId: ID!, $asPreview: Boolean = false) {
+        menu: menuItems(where: { location: PRIMARY, parentId: 0 }) {
+            nodes {
+                ...PriMenuFrag
+            }
+        }
+
         page(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
             title
             content

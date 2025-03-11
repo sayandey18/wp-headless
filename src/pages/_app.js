@@ -3,8 +3,6 @@ import { FaustProvider } from '@faustwp/core';
 import { Gabarito } from 'next/font/google';
 import clsx from 'clsx';
 
-import Footer from '@/components/Footer';
-
 import '@root/faust.config';
 import '@/styles/globals.css';
 
@@ -26,7 +24,6 @@ export default function App({ Component, pageProps }) {
 
             <div className={clsx('relative', gabarito.className)}>
                 <Component {...pageProps} key={router.asPath} />
-                <Footer />
             </div>
         </FaustProvider>
     );

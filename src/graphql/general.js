@@ -1,7 +1,18 @@
 import { gql } from '@apollo/client';
 
-export const PrimaryMenuFrag = gql(`
-    fragment PrimaryMenuFrag on MenuItem {
+export const PriMenuFrag = gql(`
+    fragment PriMenuFrag on MenuItem {
+        id
+        uri
+        path
+        label
+        target
+        databaseId
+    }
+`);
+
+export const FooMenuFrag = gql(`
+    fragment FooMenuFrag on MenuItem {
         id
         uri
         path
@@ -71,5 +82,14 @@ export const GfContactFormFrag = gql(`
                 }
             }
         }
+    }
+`);
+
+export const SocialLinksFrag = gql(`
+    fragment SocialLinksFrag on Social {
+        github
+        bluesky
+        twitter
+        linkedin
     }
 `);
