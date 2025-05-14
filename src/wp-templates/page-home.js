@@ -23,10 +23,11 @@ export default function HomePage(props) {
         return <>Loading...</>;
     }
 
-    const { pmenu, fmenu, page, posts, general } = props.data;
+    const { pmenu, fmenu, page, posts, projects, general } = props.data;
 
     const recentPosts = posts?.nodes;
     const socialLinks = general?.social;
+    const recentProjects = projects?.nodes;
 
     const siteConfig = {
         metaData: page?.seo?.fullHead,
@@ -62,8 +63,8 @@ export default function HomePage(props) {
             </Container>
             <Photos />
             <Container className="mt-24 md:mt-28">
-                <LatestProjects />
-                <div className="mx-auto mt-12 grid max-w-xl grid-cols-1 gap-y-12 lg:mt-18 lg:max-w-none lg:grid-cols-2 lg:gap-y-18">
+                <LatestProjects projects={recentProjects} />
+                <div className="mx-auto mt-12 grid grid-cols-1 gap-y-12 lg:mt-18 lg:max-w-none lg:grid-cols-2 lg:gap-y-18">
                     <div className="flex flex-col gap-12 lg:gap-18">
                         {recentPosts &&
                             recentPosts.map((article) => (
@@ -118,6 +119,18 @@ HomePage.query = gql`
                 slug
                 title
                 excerpt
+            }
+        }
+
+        projects {
+            nodes {
+                id
+                uri
+                title
+                excerpt
+                projectPostType {
+                    isFeatured
+                }
             }
         }
 

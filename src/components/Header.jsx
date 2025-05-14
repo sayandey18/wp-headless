@@ -22,9 +22,6 @@ import {
     ChevronDown
 } from '@/components/SimpleIcons';
 
-const avatarImage =
-    'https://secure.gravatar.com/avatar/e2b8f94c5fe65e65d6fc60caf4e0a21d?s=96';
-
 function MobileNavItem({ href, children }) {
     return (
         <li>
@@ -210,7 +207,7 @@ function AvatarContainer({ className, ...props }) {
         <div
             className={clsx(
                 className,
-                'h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
+                'flex justify-between items-center h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
             )}
             {...props}
         />
@@ -226,7 +223,7 @@ function Avatar({ large = false, className, ...props }) {
             {...props}
         >
             <Image
-                src={avatarImage}
+                src="/assets/images/sayan-dey.jpeg"
                 alt="Sayan"
                 height={96}
                 width={96}
@@ -374,7 +371,7 @@ export default function Header({ menu }) {
                             >
                                 <div className="relative">
                                     <AvatarContainer
-                                        className="absolute top-3 left-0 origin-left transition-opacity"
+                                        className="absolute top-4 left-0.5 origin-left transition-opacity"
                                         style={{
                                             opacity:
                                                 'var(--avatar-border-opacity, 0)',

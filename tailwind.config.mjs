@@ -107,33 +107,41 @@ const tailwindConfig = {
                         marginBottom: theme('spacing.10')
                     },
                     p: {
-                        marginTop: theme('spacing.7'),
-                        marginBottom: theme('spacing.7')
+                        marginTop: theme('spacing.0'),
+                        marginBottom: theme('spacing.3')
                     },
 
                     // Headings
-                    'h2, h3': {
+                    'h2, h3, h4': {
                         color: 'var(--tw-prose-headings)',
                         fontWeight: theme('fontWeight.semibold')
                     },
                     h2: {
-                        fontSize: theme('fontSize.xl')[0],
+                        fontSize: theme('fontSize.3xl')[0],
                         lineHeight: theme('lineHeight.7'),
-                        marginTop: theme('spacing.20'),
+                        marginTop: theme('spacing.10'),
                         marginBottom: theme('spacing.4')
                     },
                     h3: {
-                        fontSize: theme('fontSize.base')[0],
+                        fontSize: theme('fontSize.2xl')[0],
                         lineHeight: theme('lineHeight.7'),
-                        marginTop: theme('spacing.16'),
+                        marginTop: theme('spacing.10'),
                         marginBottom: theme('spacing.4')
                     },
-                    ':is(h2, h3) + *': {
+                    h4: {
+                        fontSize: theme('fontSize.xl')[0],
+                        lineHeight: theme('lineHeight.7'),
+                        marginTop: theme('spacing.10'),
+                        marginBottom: theme('spacing.4')
+                    },
+                    ':is(h2, h3, h4) + *': {
                         marginTop: 0
                     },
 
                     // Images
                     img: {
+                        border: '1px solid',
+                        borderColor: 'var(--tw-prose-td-borders)',
                         borderRadius: theme('borderRadius.3xl')
                     },
 
@@ -204,8 +212,8 @@ const tailwindConfig = {
                         paddingLeft: theme('spacing.6')
                     },
                     li: {
-                        marginTop: theme('spacing.6'),
-                        marginBottom: theme('spacing.6'),
+                        marginTop: theme('spacing.2'),
+                        marginBottom: theme('spacing.2'),
                         paddingLeft: theme('spacing[3.5]')
                     },
                     'li::marker': {

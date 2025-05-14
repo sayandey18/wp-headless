@@ -56,8 +56,8 @@ export default function ArticleLayout({ entry, children }) {
                                     {' / '}
                                     {entry?.postDate
                                         ? new Date(
-                                              entry.postDate
-                                          ).toDateString()
+                                            entry.postDate
+                                        ).toDateString()
                                         : ''}
                                 </p>
                             </div>

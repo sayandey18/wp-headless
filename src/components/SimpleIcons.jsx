@@ -31,6 +31,14 @@ export function LinkedIn(props) {
     );
 }
 
+export function BlueSky(props) {
+    return (
+        <svg viewBox="0 0 24 24" aria-hidden="true" {...props}>
+            <path d="M18.231 3.618c-2.312 1.736-4.785 5.107-5.948 7.244a.322.322 0 0 1-.567 0C10.553 8.725 8.08 5.354 5.768 3.618 3.949 2.252 1 1.195 1 4.559c0 .672.385 5.643.611 6.451.606 2.169 2.454 3.089 4.437 3.195.19.01.222.261.043.324-2.988 1.048-3.518 3.196-1.424 5.344 3.826 3.894 5.814.647 6.733-1.514.224-.525.977-.525 1.2 0 .92 2.161 2.907 5.408 6.733 1.514 2.093-2.148 1.564-4.296-1.424-5.344a.165.165 0 0 1 .043-.324c1.983-.106 3.83-1.026 4.437-3.195.226-.807.611-5.779.611-6.451 0-3.364-2.949-2.307-4.769-.941" />
+        </svg>
+    );
+}
+
 export function ArrowLeft(props) {
     return (
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
@@ -39,6 +47,20 @@ export function ArrowLeft(props) {
                 strokeLinecap="round"
                 strokeLinejoin="round"
                 d="M7.25 11.25 3.75 8m0 0 3.5-3.25M3.75 8h8.5"
+            />
+        </svg>
+    );
+}
+
+export function ArrowRight(props) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+            <path
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3"
             />
         </svg>
     );
@@ -221,6 +243,20 @@ export function HeartIcon(props) {
             <path
                 d="M66.911,22.831c0-10.563-8.558-19.122-19.118-19.122c-5.658,0-10.721,2.473-14.223,6.377 c-0.037,0.043-0.076,0.085-0.113,0.128c-3.5-3.98-8.618-6.505-14.334-6.505C8.561,3.709,0.005,12.268,0,22.831 c0,5.834,2.629,11.059,6.758,14.565H6.751l27.104,25.806l26.308-25.806h-0.012C64.279,33.89,66.911,28.669,66.911,22.831z"
                 className="fill-red-500"
+            />
+        </svg>
+    );
+}
+
+export function PaperClip(props) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+            <path
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                d="m18.375 12.739-7.693 7.693a4.5 4.5 0 0 1-6.364-6.364l10.94-10.94A3 3 0 1 1 19.5 7.372L8.552 18.32m.009-.01-.01.01m5.699-9.941-7.81 7.81a1.5 1.5 0 0 0 2.112 2.13"
             />
         </svg>
     );

@@ -4,35 +4,30 @@ import Prose from '@/components/Prose';
 import Layout from '@/components/Layout';
 import ArticleLayout from '@/components/ArticleLayout';
 
-import {
-    PriMenuFrag,
-    FooMenuFrag,
-    SocialLinksFrag,
-    PostTagFrag
-} from '@/graphql/general';
+import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
 
-export default function Single(props) {
+export default function SingleProject(props) {
     if (props.loading) {
         return <>Loading...</>;
     }
 
-    const { pmenu, fmenu, post, general } = props.data;
-    const postContent = post?.content;
+    const { pmenu, fmenu, project, general } = props.data;
+    const postContent = project?.content;
 
     const siteConfig = {
-        metaData: post?.seo?.fullHead,
+        metaData: project?.seo?.fullHead,
         primaryMenus: pmenu?.nodes || [],
         footerMenus: fmenu?.nodes || [],
         socialLinks: general?.social
     };
 
     const entryHeader = {
-        postDate: post?.date,
-        postTitle: post?.title,
-        postContent: post?.content,
+        postDate: project?.date,
+        postTitle: project?.title,
+        postContent: project?.content,
         postAuthor: {
-            authorName: post?.author?.node?.name,
-            authorImg: post?.author?.node?.avatar?.url
+            authorName: project?.author?.node?.name,
+            authorImg: project?.author?.node?.avatar?.url
         }
     };
 
@@ -45,12 +40,11 @@ export default function Single(props) {
     );
 }
 
-Single.query = gql`
+SingleProject.query = gql`
     ${PriMenuFrag}
-    ${PostTagFrag}
     ${FooMenuFrag}
     ${SocialLinksFrag}
-    query PostPageQuery($databaseId: ID!, $asPreview: Boolean = false) {
+    query SingleProjectQuery($databaseId: ID!, $asPreview: Boolean = false) {
         general: generalSettings {
             social {
                 ...SocialLinksFrag
@@ -63,7 +57,7 @@ Single.query = gql`
             }
         }
 
-        post(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
+        project(id: $databaseId, idType: DATABASE_ID, asPreview: $asPreview) {
             date
             title
             content
@@ -74,9 +68,6 @@ Single.query = gql`
                         url
                     }
                 }
-            }
-            tags {
-                ...PostTagFrag
             }
             seo {
                 fullHead
@@ -91,7 +82,7 @@ Single.query = gql`
     }
 `;
 
-Single.variables = ({ databaseId }, ctx) => {
+SingleProject.variables = ({ databaseId }, ctx) => {
     return {
         databaseId,
         asPreview: ctx?.asPreview

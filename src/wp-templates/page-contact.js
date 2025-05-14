@@ -1,11 +1,12 @@
 import { gql } from '@apollo/client';
+
 import Prose from '@/components/Prose';
 import Layout from '@/components/Layout';
 import PageLayout from '@/components/PageLayout';
 
-import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
+import { PriMenuFrag, FooMenuFrag, SocialLinksFrag, GfContactFormFrag } from '@/graphql/general';
 
-export default function Page(props) {
+export default function ContactPage(props) {
     if (props.loading) {
         return <>Loading...</>;
     }
@@ -33,11 +34,12 @@ export default function Page(props) {
     );
 }
 
-Page.query = gql`
+ContactPage.query = gql`
     ${PriMenuFrag}
     ${FooMenuFrag}
     ${SocialLinksFrag}
-    query PageQuery($databaseId: ID!, $asPreview: Boolean = false) {
+    ${GfContactFormFrag}
+    query ContactPageQuery($databaseId: ID!, $asPreview: Boolean = false) {
         general: generalSettings {
             social {
                 ...SocialLinksFrag
@@ -63,10 +65,17 @@ Page.query = gql`
                 ...FooMenuFrag
             }
         }
+
+        gfForm(id: 2, idType: DATABASE_ID) {
+            databaseId
+            formFields {
+                ...GfContactFormFrag
+            }
+        }
     }
 `;
 
-Page.variables = ({ databaseId }, ctx) => {
+ContactPage.variables = ({ databaseId }, ctx) => {
     return {
         databaseId,
         asPreview: ctx?.asPreview

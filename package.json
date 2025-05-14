@@ -3,42 +3,54 @@
     "version": "0.1.0",
     "private": true,
     "scripts": {
-        "dev": "faust dev",
-        "build": "faust build",
-        "start": "faust start",
-        "lint": "eslint .",
+        "dev": "next dev --turbopack",
+        "build": "next build",
+        "start": "next start",
+        "lint": "next lint",
         "generate": "faust generatePossibleTypes",
         "format:write": "prettier --write '**/*.{css,js,jsx,mjs,cjs,json}'",
-        "format:check": "prettier --check './**/*.{css,js,jsx,mjs,cjs,json}'"
+        "format:check": "prettier --check './**/*.{css,js,jsx,mjs,cjs,json}'",
+        "wp-dev": "npx @wp-now/wp-now start --blueprint blueprint-schema.json"
     },
     "dependencies": {
-        "@apollo/client": "^3.13.3",
-        "@faustwp/cli": "^3.2.1",
-        "@faustwp/core": "^3.2.1",
-        "@headlessui/react": "^2.2.0",
-        "@tailwindcss/postcss": "^4.0.12",
+        "@apollo/client": "^3.13.8",
+        "@faustwp/cli": "^3.2.3",
+        "@faustwp/core": "^3.2.3",
+        "@headlessui/react": "^2.2.3",
+        "@tailwindcss/postcss": "^4.1.6",
         "@tailwindcss/typography": "^0.5.16",
         "clsx": "^2.1.1",
-        "graphql": "^16.10.0",
-        "html-react-parser": "^5.2.2",
-        "motion": "^12.4.10",
-        "next": "14.2.24",
-        "react": "^18.3.1",
-        "react-dom": "^18.3.1",
+        "graphql": "^16.11.0",
+        "html-react-parser": "^5.2.5",
+        "motion": "^12.11.3",
+        "next": "15.3.2",
+        "react": "^19.1.0",
+        "react-dom": "^19.1.0",
         "reading-duration": "^1.1.2",
-        "tailwind-merge": "^3.0.2",
-        "tailwindcss": "^4.0.12",
+        "tailwind-merge": "^3.3.0",
+        "tailwindcss": "^4.1.6",
         "use-sound": "^5.0.0"
     },
     "devDependencies": {
-        "@eslint/eslintrc": "^3.3.0",
-        "@eslint/js": "8.57.0",
-        "@next/eslint-plugin-next": "14.2.24",
-        "eslint": "8.57.0",
-        "eslint-config-next": "14.2.24",
-        "eslint-config-prettier": "^10.1.1",
+        "@eslint/eslintrc": "^3.3.1",
+        "@eslint/js": "9.26.0",
+        "@next/eslint-plugin-next": "15.3.2",
+        "eslint": "9.26.0",
+        "eslint-config-next": "15.3.2",
+        "eslint-config-prettier": "^10.1.5",
         "eslint-plugin-unused-imports": "^4.1.4",
         "prettier": "^3.5.3",
         "prettier-plugin-tailwindcss": "^0.6.11"
+    },
+    "pnpm": {
+        "ignoredBuiltDependencies": [
+            "@tailwindcss/oxide",
+            "sharp",
+            "unrs-resolver"
+        ],
+        "onlyBuiltDependencies": [
+            "@tailwindcss/oxide",
+            "sharp"
+        ]
     }
 }

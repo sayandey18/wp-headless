@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import clsx from 'clsx';
-import { GitHub, LinkedIn, Twitter } from '@/components/SimpleIcons';
+import { GitHub, LinkedIn, Twitter, BlueSky } from '@/components/SimpleIcons';
 
 function SocialLink({ icon: Icon, ...props }) {
     return (
@@ -29,6 +29,15 @@ export default function SocialHandle({ social, className }) {
                     rel="noopener"
                     aria-label="Follow on GitHub"
                     icon={GitHub}
+                />
+            )}
+            {social?.bluesky && (
+                <SocialLink
+                    href={social.bluesky}
+                    target="_blank"
+                    rel="noopener"
+                    aria-label="Follow on BlueSky"
+                    icon={BlueSky}
                 />
             )}
             {social?.linkedin && (

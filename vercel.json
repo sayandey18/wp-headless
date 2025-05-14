@@ -1,0 +1,11 @@
+{
+    "cleanUrls": true,
+    "framework": "nextjs",
+    "installCommand": "pnpm install",
+    "redirects": [
+        {
+            "source": "/resume",
+            "destination": "/sayandey-resume.pdf"
+        }
+    ]
+}
