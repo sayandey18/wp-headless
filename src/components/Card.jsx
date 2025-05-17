@@ -1,21 +1,8 @@
 import Link from 'next/link';
 import clsx from 'clsx';
 import useSound from 'use-sound';
-import { useSoundContext } from '@/context/sound';
 
-function ChevronRight(props) {
-    return (
-        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
-            <path
-                stroke="currentColor"
-                strokeWidth="3.5"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="m8.25 4.5 7.5 7.5-7.5 7.5"
-            />
-        </svg>
-    );
-}
+import { ChevronRight } from '@/components/SimpleIcons';
 
 export default function Card({ as: Component = 'div', className, children }) {
     return (
@@ -40,7 +27,7 @@ Card.Link = function CardLink({ children, ...props }) {
 
 Card.Title = function CardTitle({ as: Component = 'h2', href, children }) {
     return (
-        <Component className="text-xl font-semibold tracking-tight text-zinc-800 dark:text-zinc-100 decoration-blue-600 hover:underline hover:underline-offset-3">
+        <Component className="text-xl font-semibold tracking-tight text-zinc-800 decoration-blue-600 hover:underline hover:underline-offset-3 dark:text-zinc-100">
             {href ? <Card.Link href={href}>{children}</Card.Link> : children}
         </Component>
     );
@@ -55,28 +42,24 @@ Card.Description = function CardDescription({ children }) {
 };
 
 Card.Cta = function CardCta({ children, slug }) {
-    const { soundEnabled } = useSoundContext();
-
     const [risingPlaySfx, { stop: risingStopSfx }] = useSound(
-        '/assets/sounds/rising-pops.mp3', {
-        volume: 0.5,
-        soundEnabled
-    }
+        '/assets/sounds/rising-pops.mp3',
+        { volume: 0.5 }
     );
 
     return (
         <div
             onMouseEnter={() => risingPlaySfx()}
             onMouseLeave={() => risingStopSfx()}
-            className="group flex items-center justify-end mt-4 gap-1"
+            className="group mt-4 flex items-center justify-end gap-1"
         >
             <Link
                 href={slug}
-                className="text-base font-medium text-teal-500"
+                className="text-base font-medium text-fuchsia-400"
             >
                 {children}
             </Link>
-            <ChevronRight className="h-3 w-3 cursor-pointer text-teal-500 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-teal-400" />
+            <ChevronRight className="h-3 w-3 cursor-pointer text-fuchsia-400 transition duration-500 ease-in-out group-hover:translate-x-1 group-hover:text-fuchsia-500" />
         </div>
     );
 };

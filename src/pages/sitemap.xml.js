@@ -4,7 +4,7 @@ export default function Sitemap() {}
 
 export function getServerSideProps(ctx) {
     return getSitemapProps(ctx, {
-        frontendUrl: process.env.FRONTEND_URL,
+        frontendUrl: process.env.FAUST_FRONTEND_URL,
         sitemapIndexPath: 'sitemap_index.xml'
     });
 }

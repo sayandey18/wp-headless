@@ -1,7 +1,18 @@
 import { gql } from '@apollo/client';
 
-export const PrimaryMenuFragment = gql(`
-    fragment PrimaryMenuFragment on MenuItem {
+export const PriMenuFrag = gql(`
+    fragment PriMenuFrag on MenuItem {
+        id
+        uri
+        path
+        label
+        target
+        databaseId
+    }
+`);
+
+export const FooMenuFrag = gql(`
+    fragment FooMenuFrag on MenuItem {
         id
         uri
         path
@@ -20,6 +31,36 @@ export const PostTagFrag = gql(`
             }
         }
     } 
+`);
+
+export const PostListItemFrag = gql(`
+    fragment PostListItemFrag on Post {
+        id
+        title
+        date
+        excerpt
+        slug
+        featuredImage {
+            node {
+                sourceUrl
+                altText
+            }
+        }
+        categories {
+            nodes {
+                name
+                slug
+            }
+        }
+        author {
+            node {
+                name
+                avatar {
+                    url
+                }
+            }
+        }
+    }
 `);
 
 export const GfNewsletterFrag = gql(`
@@ -71,5 +112,14 @@ export const GfContactFormFrag = gql(`
                 }
             }
         }
+    }
+`);
+
+export const SocialLinksFrag = gql(`
+    fragment SocialLinksFrag on Social {
+        github
+        bluesky
+        twitter
+        linkedin
     }
 `);

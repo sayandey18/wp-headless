@@ -1,0 +1,20 @@
+{
+    "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+    "meta": {
+        "title": "Headless WordPress Using Faust.js",
+        "description": "Example site to use when learning how to work with Faust.js to build a headless WordPress site with Next.js.",
+        "author": "sayandey18",
+        "categories": ["API", "wpgraphql", "Faust", "headless"]
+    },
+    "siteOptions": {
+        "blogname": "Headless WordPress Using Faust.js"
+    },
+    "landingPage": "/wp-admin/plugins.php",
+    "plugins": ["wp-graphql", "faustwp"],
+    "steps": [
+        {
+            "step": "login",
+            "username": "admin"
+        }
+    ]
+}
