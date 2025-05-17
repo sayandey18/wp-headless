@@ -4,31 +4,16 @@ import Prose from '@/components/Prose';
 import Layout from '@/components/Layout';
 import PageLayout from '@/components/PageLayout';
 import ArticleList from '@/components/ArticleList';
-
 import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
-
-
-function calculateDays(date) {
-    const getDate = new Date(date);
-    const nowDate = new Date();
-    const diffTime = Math.abs(nowDate.getTime() - getDate.getTime());
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-
-    if (diffDays < 30) {
-        return `${diffDays} days ago`;
-    } else {
-        const diffMonths = Math.floor(diffDays / 30)
-        return `${diffMonths} ${diffMonths === 1 ? 'month' : 'months'} ago`;
-    }
-}
 
 export default function PostsPage(props) {
     if (props.loading) {
         return <>Loading...</>;
     }
 
-    const { pmenu, fmenu, page, general } = props.data;
+    const { pmenu, fmenu, page, general, settings } = props.data;
     const pageContent = page?.content;
+    const postsPerPage = settings?.readingSettingsPostsPerPage;
 
     const siteConfig = {
         metaData: page?.seo?.fullHead,
@@ -43,11 +28,9 @@ export default function PostsPage(props) {
 
     return (
         <Layout config={siteConfig}>
-            <PageLayout
-                entry={entryHeader}
-                className="max-w-5xl mx-auto">
+            <PageLayout entry={entryHeader} className="mx-auto max-w-5xl">
                 <Prose className="mt-8">{pageContent}</Prose>
-                <ArticleList />
+                <ArticleList postsPerPage={postsPerPage} />
             </PageLayout>
         </Layout>
     );
@@ -62,6 +45,10 @@ PostsPage.query = gql`
             social {
                 ...SocialLinksFrag
             }
+        }
+
+        settings: allSettings {
+            readingSettingsPostsPerPage
         }
 
         pmenu: menuItems(where: { location: PRIMARY, parentId: 0 }) {
@@ -81,30 +68,6 @@ PostsPage.query = gql`
             content
             seo {
                 fullHead
-            }
-        }
-
-        posts(first: 2) {
-            nodes {
-                id
-                title
-                date
-                excerpt
-                slug
-                categories {
-                    nodes {
-                        name
-                        slug
-                    }
-                }
-                author {
-                    node {
-                        name
-                        avatar {
-                            url
-                        }
-                    }
-                }
             }
         }
     }

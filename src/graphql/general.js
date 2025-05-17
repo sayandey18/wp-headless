@@ -33,6 +33,36 @@ export const PostTagFrag = gql(`
     } 
 `);
 
+export const PostListItemFrag = gql(`
+    fragment PostListItemFrag on Post {
+        id
+        title
+        date
+        excerpt
+        slug
+        featuredImage {
+            node {
+                sourceUrl
+                altText
+            }
+        }
+        categories {
+            nodes {
+                name
+                slug
+            }
+        }
+        author {
+            node {
+                name
+                avatar {
+                    url
+                }
+            }
+        }
+    }
+`);
+
 export const GfNewsletterFrag = gql(`
     fragment GfNewsletterFrag on GfFormToFormFieldConnection {
         edges {
