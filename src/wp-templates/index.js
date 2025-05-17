@@ -7,13 +7,13 @@ import singleProject from '@/wp-templates/single-project';
 import archiveProject from '@/wp-templates/archive-project';
 
 const templateOptions = {
-    'page': singlePage,
+    page: singlePage,
     'page-home': homePage,
     'page-posts': postsPage,
     'page-contact': contactPage,
     'single-post': singlePost,
     'single-project': singleProject,
-    'archive-project': archiveProject,
+    'archive-project': archiveProject
 };
 
 export default templateOptions;

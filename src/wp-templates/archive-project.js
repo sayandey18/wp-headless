@@ -26,10 +26,10 @@ export default function ArchiveProjects(props) {
     return (
         <Layout config={siteConfig}>
             <PageLayout entry={entryHeader}>
-                <div className="mt-6 w-full text-zinc-600 prose dark:prose-invert dark:text-zinc-400">
+                <div className="prose dark:prose-invert mt-6 w-full text-zinc-600 dark:text-zinc-400">
                     <ul>
                         {recentProjects.nodes.map((node) => (
-                            <li>
+                            <li key={node.id}>
                                 <Link href={node.uri}>{node.title}</Link>
                             </li>
                         ))}
@@ -66,28 +66,28 @@ ArchiveProjects.query = gql`
         }
 
         node: nodeByUri(uri: $uri) {
-			... on ContentType {
-				label
-				description
-				contentNodes {
-					nodes {
-						id
-						uri
-						... on NodeWithTitle {
-							title
-						}
-					}
-				}
+            ... on ContentType {
+                label
+                description
+                contentNodes {
+                    nodes {
+                        id
+                        uri
+                        ... on NodeWithTitle {
+                            title
+                        }
+                    }
+                }
                 seo {
                     fullHead
                 }
-			}
-		}
+            }
+        }
     }
 `;
 
 ArchiveProjects.variables = (seedQuery) => {
     return {
-        uri: seedQuery.uri,
+        uri: seedQuery.uri
     };
 };

@@ -261,3 +261,17 @@ export function PaperClip(props) {
         </svg>
     );
 }
+
+export function SearchIcon(props) {
+    return (
+        <svg viewBox="0 0 24 24" fill="none" aria-hidden="true" {...props}>
+            <path
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                stroke="currentColor"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+        </svg>
+    );
+}

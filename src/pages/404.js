@@ -6,7 +6,6 @@ import Container from '@/components/Container';
 import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
 
 export default function Page404(props) {
-
     const { pmenu, fmenu, general } = props.data;
 
     const siteConfig = {
@@ -23,8 +22,11 @@ export default function Page404(props) {
                         404
                     </h1>
                 </header>
-                <div className="mt-6 w-full text-zinc-600 prose dark:prose-invert dark:text-zinc-400">
-                    <p>It looks like the page you're looking for has gone missing!</p>
+                <div className="prose dark:prose-invert mt-6 w-full text-zinc-600 dark:text-zinc-400">
+                    <p>
+                        It looks like the page you&apos;re looking for has gone
+                        missing!
+                    </p>
                 </div>
             </Container>
         </Layout>

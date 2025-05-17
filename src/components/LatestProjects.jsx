@@ -18,22 +18,22 @@ export default function LatestProjects({ projects }) {
         { volume: 0.5 }
     );
 
-    const featuredProjects = projects.filter(
-        project => project.projectPostType?.isFeatured
-    ).slice(-3);
+    const featuredProjects = projects
+        .filter((project) => project.projectPostType?.isFeatured)
+        .slice(-3);
 
     const beamConfigs = [
         {
             first: 'via-red-500',
-            second: 'via-blue-500',
+            second: 'via-blue-500'
         },
         {
             first: 'via-amber-500',
-            second: 'via-pink-500',
+            second: 'via-pink-500'
         },
         {
             first: 'via-fuchsia-500',
-            second: 'via-cyan-500',
+            second: 'via-cyan-500'
         }
     ];
 
@@ -66,7 +66,10 @@ export default function LatestProjects({ projects }) {
                 {featuredProjects.map((project, index) => {
                     const config = beamConfigs[index] || beamConfigs[0];
                     return (
-                        <div key={project.id} className="group relative h-full overflow-hidden rounded-xl border border-zinc-100 bg-white shadow-2xs dark:border-zinc-700/40 dark:bg-zinc-800">
+                        <div
+                            key={project.id}
+                            className="group relative h-full overflow-hidden rounded-xl border border-zinc-100 bg-white shadow-2xs dark:border-zinc-700/40 dark:bg-zinc-800"
+                        >
                             <Link
                                 href={project.uri}
                                 className="relative block p-6"
@@ -79,7 +82,7 @@ export default function LatestProjects({ projects }) {
                                 <h3 className="mt-4 text-lg font-medium text-zinc-900 dark:text-zinc-100 dark:group-hover:text-fuchsia-400">
                                     {project.title}
                                 </h3>
-                                <p className="mt-2 text-base line-clamp-3 text-zinc-600 dark:text-zinc-400">
+                                <p className="mt-2 line-clamp-3 text-base text-zinc-600 dark:text-zinc-400">
                                     {project.excerpt.replace(/<[^>]+>/g, '')}
                                 </p>
                                 <div></div>

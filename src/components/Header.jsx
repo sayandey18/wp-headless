@@ -207,7 +207,7 @@ function AvatarContainer({ className, ...props }) {
         <div
             className={clsx(
                 className,
-                'flex justify-between items-center h-10 w-10 rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
+                'flex h-10 w-10 items-center justify-between rounded-full bg-white/90 p-0.5 shadow-lg ring-1 shadow-zinc-800/5 ring-zinc-900/5 backdrop-blur-sm dark:bg-zinc-800/90 dark:ring-white/10'
             )}
             {...props}
         />

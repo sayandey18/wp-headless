@@ -4,7 +4,12 @@ import Prose from '@/components/Prose';
 import Layout from '@/components/Layout';
 import PageLayout from '@/components/PageLayout';
 
-import { PriMenuFrag, FooMenuFrag, SocialLinksFrag, GfContactFormFrag } from '@/graphql/general';
+import {
+    PriMenuFrag,
+    FooMenuFrag,
+    SocialLinksFrag,
+    GfContactFormFrag
+} from '@/graphql/general';
 
 export default function ContactPage(props) {
     if (props.loading) {
