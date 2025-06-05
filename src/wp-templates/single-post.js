@@ -1,18 +1,25 @@
+import { useState } from 'react';
 import { gql } from '@apollo/client';
 
 import Prose from '@/components/Prose';
 import Layout from '@/components/Layout';
 import ArticleLayout from '@/components/ArticleLayout';
+import CommentBox from '@/components/Comment/CommentBox';
+import CommentList from '@/components/Comment/CommentList';
 
 import { PriMenuFrag, FooMenuFrag, SocialLinksFrag } from '@/graphql/general';
 
 export default function SinglePost(props) {
+    const [replyTo, setReplyTo] = useState(null);
+
     if (props.loading) {
         return <>Loading...</>;
     }
 
     const { pmenu, fmenu, post, general } = props.data;
     const postContent = post?.content;
+    const databaseId = post?.databaseId;
+    const postComments = post?.comments?.nodes || [];
 
     const siteConfig = {
         metaData: post?.seo?.fullHead,
@@ -35,6 +42,14 @@ export default function SinglePost(props) {
         <Layout config={siteConfig}>
             <ArticleLayout entry={entryHeader}>
                 <Prose className="mt-8">{postContent}</Prose>
+                <div className="mt-12 border-t border-zinc-200 pt-8 dark:border-zinc-700/40">
+                    <CommentList comments={postComments} onReply={setReplyTo} />
+                    <CommentBox
+                        id={databaseId}
+                        parentId={replyTo?.id}
+                        onSuccess={() => setReplyTo(null)}
+                    />
+                </div>
             </ArticleLayout>
         </Layout>
     );
@@ -61,6 +76,7 @@ SinglePost.query = gql`
             date
             title
             content
+            databaseId
             author {
                 node {
                     name
@@ -71,6 +87,25 @@ SinglePost.query = gql`
             }
             seo {
                 fullHead
+            }
+            commentCount
+            comments {
+                nodes {
+                    id
+                    databaseId
+                    content
+                    date
+                    status
+                    parentId
+                    author {
+                        node {
+                            name
+                            avatar {
+                                url
+                            }
+                        }
+                    }
+                }
             }
         }
 
